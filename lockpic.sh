@@ -1,7 +1,8 @@
 #!/bin/bash
 
-loginfldr="/home/vijay/Pictures/Login/"
-droploginfldr="/home/vijay/Dropbox/Photos/Login/"
+lockfldr="/home/vijay/Pictures/Login/"
+droplockfldr="/home/vijay/Dropbox/Photos/Login/"
+
 logfldr="/home/vijay/Pictures/DayLog"
 dropfldr="/home/vijay/Dropbox/Photos/DayLog"
 now=$(date +%s)
@@ -28,30 +29,33 @@ cp_dropbox(){
 	cd - >> /dev/null 2>&1
 }
 take_pic(){
-	cd $loginfldr
-	streamer -f jpeg -o $now.jpeg -s 1280x720 >> /dev/null 2>&1
-	if [[ ! -z $droploginfldr ]]; then
-		cp $now.jpeg $droploginfldr
-	fi
-	cd - >> /dev/null 2>&1
-}
 
-prev=$(get_last)
-if [[ -z $prev ]]; then 
-	take_log_pic
-	if [[ ! -z $dropfldr ]]; then
-		cp_dropbox
-	fi
-
-else 
-	sub=$(calc "$now - $prev")
-	if [[ $sub -ge 86400 ]]; then 
+	#Check if one day has occur to associate the daylog
+	#with some text 
+	prev=$(get_last)
+	if [[ -z $prev ]]; then 
 		take_log_pic
 		if [[ ! -z $dropfldr ]]; then
 			cp_dropbox
 		fi
+
+	else 
+		sub=$(calc "$now - $prev")
+		if [[ $sub -ge 86400 ]]; then 
+			take_log_pic
+			if [[ ! -z $dropfldr ]]; then
+				cp_dropbox
+			fi
+		fi
 	fi
 
-fi
+	#Either way take a photo and put in the lock folder
+	cd $lockfldr
+	streamer -f jpeg -o $now.jpeg -s 1280x720 >> /dev/null 2>&1
+	if [[ ! -z $droplockfldr ]]; then
+		cp $now.jpeg $droplockfldr
+	fi
+	cd - >> /dev/null 2>&1
+}
 
 dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" | ( while true; do read X; if echo $X | grep "boolean false" &> /dev/null; then take_pic; fi done )
