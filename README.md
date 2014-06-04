@@ -1,4 +1,4 @@
-Lockpic
+Lckpic
 =======
 
 Lockpic is a ubuntu tool that takes a photo with your webcam everytime you login
@@ -7,11 +7,9 @@ when you first login to your computer.
 
 Dependencies
 ------------
-streamer
-    sudo apt-get install streamer
+streamer, python, zenity
 
-python
-    sudo apt-get install python
+Install
+-------
 
-zenity
-    sudo apt-get install zenity
+    ./install.sh 
