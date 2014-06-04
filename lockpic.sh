@@ -1,5 +1,8 @@
 #!/bin/bash
 
+picfldr="/home/vijay/Pictures/Lockpic"
+dropboxfldr="/home/vijay/Dropbox/Photos/Lockpic"
+
 get_last(){
 	ls -1 $picfldr | grep .txt | sort -n | tail -1 | cut -d. -f1
 }
@@ -9,8 +12,8 @@ calc(){
 }
 
 cp_dropbox() {
-	if [[ ! -z $droplockfldr ]]; then
-		cp $1 $droplockfldr
+	if [[ ! -z $dropboxfldr ]]; then
+		cp $1 $dropboxfldr
 	fi
 }
 
@@ -39,4 +42,5 @@ take_pic(){
 	cd - >> /dev/null 2>&1
 }
 
+take_pic
 dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" | ( while true; do read X; if echo $X | grep "boolean false" &> /dev/null; then take_pic; fi done )
