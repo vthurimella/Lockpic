@@ -36,8 +36,8 @@ if ! echo $PATH | grep "$HOME/bin" >> /dev/null;  then
 	echo "PATH=\$PATH:$HOME/bin" >> $HOME/.bashrc
 fi
 
-sed -i "3i picfldr="$dropboxfldr $HOME/bin/lockpic
-sed -i "3i dropboxpicfldr="$fldr $HOME/bin/lockpic
+sed -i "3i dropboxpicfldr="$dropboxfldr $HOME/bin/lockpic
+sed -i "3i picfldr="$fldr $HOME/bin/lockpic
 
 #Add to startup 
 start_loc="$HOME/.config/autostart/lockpic.desktop"
