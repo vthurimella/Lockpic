@@ -1,4 +1,4 @@
-Lckpic
+Lockpic
 =======
 
 Lockpic is a ubuntu tool that takes a photo with your webcam everytime you login
