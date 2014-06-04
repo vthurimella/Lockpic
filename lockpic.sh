@@ -1,7 +1,7 @@
 #!/bin/bash
 
 get_last(){
-	ls -1 $picfldr/ | grep .txt | sort -n | tail -1 | cut -d. -f1
+	ls -1 $picfldr | grep .txt | sort -n | tail -1 | cut -d. -f1
 }
 
 calc(){
