@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# picfldr="/home/vijay/Pictures/Login/"
-# dropboxpicfldr="/home/vijay/Dropbox/Photos/Login/"
-
 get_last(){
 	ls -1 $picfldr/ | grep .txt | sort -n | tail -1 | cut -d. -f1
 }
