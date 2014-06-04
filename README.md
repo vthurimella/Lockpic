@@ -1,8 +1,8 @@
 Lockpic
 =======
 
-Lockpic is a ubuntu tool that takes a photo with your webcam everytime you login
-to your computer. This tool also works both when you lock your screen and
+Lockpic is a ubuntu app that takes a photo with your webcam everytime you login
+to your computer. This app also works both when you lock your screen and
 when you first login to your computer.
 
 Dependencies
